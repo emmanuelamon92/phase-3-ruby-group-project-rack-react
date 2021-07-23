@@ -3,6 +3,7 @@ class CreateDoctors < ActiveRecord::Migration[5.2]
     create_table :doctors do |t|
       t.string :name
       t.string :specialty
+      t.string :condition_id
     end
   end
 end
