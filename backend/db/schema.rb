@@ -15,14 +15,14 @@ ActiveRecord::Schema.define(version: 2021_07_20_153902) do
   create_table "condition_reviews", force: :cascade do |t|
     t.integer "patient_id"
     t.integer "doctor_id"
-    t.boolean "is_admitted?"
+    t.boolean "is_admitted"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "conditions", force: :cascade do |t|
     t.string "name"
-    t.boolean "patient_must_be_admitted?"
+    t.boolean "patient_must_be_admitted"
   end
 
   create_table "doctors", force: :cascade do |t|
@@ -39,8 +39,10 @@ ActiveRecord::Schema.define(version: 2021_07_20_153902) do
   end
 
   create_table "patients", force: :cascade do |t|
-    t.string "name"
+    t.string "first_name"
+    t.string "last_name"
     t.string "condition"
+    t.boolean "is_admitted"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

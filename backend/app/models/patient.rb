@@ -4,7 +4,11 @@ class Patient < ActiveRecord::Base
     has_many :doctors, through: :condition_reviews
     has_many :conditions, through: :patient_conditions
 
-    def doctors_by_specialty
-        Doctor.all.filter{|doctor| doctor.specialty == self.condition }
+    def doctor
+        # Doctor.all.filter{|doctor| doctor.specialty == self.condition.split(", ")[0] || self.condition.split(", ")[1]}
+        Doctor.all.filter{|doctor| doctor.specialty == self.condition}
     end
+
+    # Patient.first.doctor
+        # calling .first because it is an instance method and method is called on each instance.
 end
