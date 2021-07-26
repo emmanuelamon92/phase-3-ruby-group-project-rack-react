@@ -19,10 +19,12 @@ class Application
       patient_in = Patient.find_by(first_name: data["first_name"], last_name: data["last_name"])
       if !patient_in
         Patient.create(first_name: data["first_name"], last_name: data["last_name"], condition: data["condition"], is_admitted: true)
-        
-        [200, { 'Content-Type' => 'application/json' }, [ {:message => "#{Patient.last["first_name"]} has been added!"}.to_json ]]
+        # patient = Patient.create(data)
+        req_patient = {id: Patient.last["id"], first_name: data["first_name"], last_name: data["last_name"], condition: data["condition"], is_admitted: true}
+        # req_patient = {id: patient.id, first_name: patient.first_name, last_name: patient.last_name, condition: patient.condition, is_admitted: true}
+        return [200, { 'Content-Type' => 'application/json' }, [ {:patient => req_patient, :message => "#{Patient.last["first_name"]} has been added!" }.to_json ]]
       else
-        [200, { 'Content-Type' => 'application/json' }, [ { :error => "The patient #{data["first_name"]}, is already on file!"}.to_json ]]
+        return [200, { 'Content-Type' => 'application/json' }, [ { :error => "The patient #{data["first_name"]}, is already on file!"}.to_json ]]
       end
 # <-- PATIENT-POST-END -->
 
