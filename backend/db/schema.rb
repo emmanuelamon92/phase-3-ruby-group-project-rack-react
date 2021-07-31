@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 2021_07_20_153902) do
   create_table "doctors", force: :cascade do |t|
     t.string "name"
     t.string "specialty"
-    t.string "condition_id"
+    t.integer "condition_id"
   end
 
   create_table "patient_conditions", force: :cascade do |t|

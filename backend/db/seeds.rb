@@ -15,8 +15,10 @@ condition_hash.each do |condition|
     Condition.create(name: condition[:name], patient_must_be_admitted: condition[:severe])
 end
 
+condition_ids = Condition.all.map{|condition| condition.id}
+
 doctor_hash.each do |doctor|
-    Doctor.create(name: doctor[:name], specialty: doctor[:specialty])
+    Doctor.create(name: doctor[:name], specialty: doctor[:specialty], condition_id: rand(condition_ids.first..condition_ids.last))
 end
 
 patient_ids = Patient.all.map{|user| user.id}
